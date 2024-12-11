@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 /*
 Plugin Name: Givebutter Widgets
 Description: Plugin for embedding Givebutter widgets via shortcodes
-Version: 1.0.2
+Version: 1.0.5
 Author: Givebutter
 Author URI: https://givebutter.com
 */
@@ -45,7 +45,8 @@ function givebutter_widget_enqueue_script() {
     if (!empty($account)) {
         $url = "https://widgets.givebutter.com/latest.umd.cjs?acct={$account}&p=wordpress";
 
-        wp_enqueue_script('givebutter-widget-library', $url, [], null, ['strategy' => 'async', 'in_footer' => true]);
+        wp_register_script('givebutter-widget-library', $url, [], null, ['strategy' => 'async', 'in_footer' => true]);
+		wp_enqueue_script('givebutter-widget-library');
     }
 }
 add_action('wp_head', 'givebutter_widget_enqueue_script');
